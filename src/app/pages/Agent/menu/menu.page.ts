@@ -101,13 +101,11 @@ export class MenuPage implements ViewWillEnter {
   }
 
 
-  // Replace your openChangePassword method in menu.page.ts
-
 async openChangePassword() {
   const modal = await this.modalCtrl.create({
     component: ChangePasswordPage,
     breakpoints: [0, 1],
-    initialBreakpoint: 1,   // full height — no cutoff
+    initialBreakpoint: 1,
     handle: true,
   });
   return await modal.present();

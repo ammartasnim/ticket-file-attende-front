@@ -1,7 +1,5 @@
-<!-- add-agent.page.html -->
 <div class="min-h-full p-10">
 
-  <!-- Page header -->
   <div class="mb-8 border-b border-zinc-100 pb-8">
     <a (click)="onCancel()"
        class="inline-flex items-center gap-1.5 text-[12px] text-zinc-400 hover:text-zinc-700 transition-colors mb-5 cursor-pointer no-underline">
@@ -12,7 +10,6 @@
     <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Create Agent Account</h1>
   </div>
 
-  <!-- Form — two column layout -->
   <form [formGroup]="agentForm" (ngSubmit)="onSubmit()" class="max-w-2xl">
 
     <div class="grid grid-cols-2 gap-5 mb-5">
@@ -60,7 +57,6 @@
       </div>
     </div>
 
-    <!-- Submit -->
     <div class="pt-6 border-t border-zinc-100 mt-8 flex items-center gap-3">
       <button type="submit"
               [disabled]="agentForm.invalid"

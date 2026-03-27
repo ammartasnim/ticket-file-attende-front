@@ -23,7 +23,7 @@ export class AddAgentPage implements OnInit {
   private router = inject(Router);
 
   agentForm!: FormGroup;
-  agencies: any[] = []; // Store the list of agencies here
+  agencies: any[] = [];
 
   constructor() {
     addIcons({ arrowBackOutline, chevronDownOutline });
@@ -41,7 +41,7 @@ export class AddAgentPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       phoneNumber: ['', [Validators.required]],
-      agencyId: [null, [Validators.required]] // This is for the dropdown
+      agencyId: [null, [Validators.required]]
     });
   }
 

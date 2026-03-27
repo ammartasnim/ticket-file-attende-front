@@ -1,7 +1,5 @@
-<!-- manage-agencies.page.html -->
 <div class="min-h-full p-10">
 
-  <!-- Page header -->
   <div class="mb-8 flex items-end justify-between border-b border-zinc-100 pb-8">
     <div>
       <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Agencies</h1>
@@ -14,7 +12,6 @@
     </a>
   </div>
 
-  <!-- Search -->
   <div
     class="bg-white border border-zinc-200 rounded-lg px-4 py-2.5 mb-6 flex items-center gap-3 max-w-sm focus-within:border-zinc-400 transition-colors">
     <ion-icon name="search-outline" class="text-zinc-400 text-base flex-shrink-0"></ion-icon>
@@ -23,10 +20,8 @@
       [(ngModel)]="searchTerm">
   </div>
 
-  <!-- Table -->
   <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
 
-    <!-- Table header -->
     <div class="grid grid-cols-12 px-6 py-3 border-b border-zinc-50 bg-zinc-50">
       <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agency</span>
       <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">City</span>
@@ -41,7 +36,6 @@
     <div
       class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0 hover:bg-zinc-50 transition-colors">
 
-      <!-- Name -->
       <div class="col-span-3 flex items-center gap-3">
         <div class="w-8 h-8 bg-zinc-100 rounded-lg flex items-center justify-center flex-shrink-0">
           <ion-icon name="business-outline" class="text-zinc-400 text-sm"></ion-icon>
@@ -52,31 +46,26 @@
         </div>
       </div>
 
-      <!-- City -->
       <div class="col-span-2">
         <span class="text-[12px] text-zinc-500">{{ agency.city || '—' }}</span>
       </div>
 
-      <!-- Hours -->
       <div class="col-span-2">
         <span class="text-[12px] text-zinc-500">
           {{ agency.openingTime || '—' }} - {{ agency.closingTime || '—' }}
         </span>
       </div>
 
-      <!-- Capacity -->
       <div class="col-span-1">
         <span class="text-[12px] text-zinc-500">{{ agency.maxCapacity }}</span>
       </div>
 
-      <!-- Services -->
       <div class="col-span-2">
         <span class="text-[12px] text-zinc-400">
           {{ agency.serviceNames?.length ? agency.serviceNames.join(', ') : '—' }}
         </span>
       </div>
 
-      <!-- Status -->
       <div class="col-span-1">
         <span class="inline-flex items-center gap-1.5">
           <span class="w-1.5 h-1.5 rounded-full" [ngClass]="agency.open ? 'bg-emerald-500' : 'bg-zinc-300'"></span>
@@ -86,7 +75,6 @@
         </span>
       </div>
 
-      <!-- Actions -->
       <div class="col-span-1 flex items-center justify-end gap-1">
         
         <button (click)="viewAgency(agency.id)"

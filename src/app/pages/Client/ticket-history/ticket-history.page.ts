@@ -68,7 +68,6 @@ export class TicketHistoryPage implements ViewWillEnter {
     });
   }
 
-  // Helper to get status color classes for the UI
   getStatusClass(status: string) {
     switch (status) {
       case 'COMPLETED': return 'bg-emerald-50 text-emerald-600 border-emerald-100';

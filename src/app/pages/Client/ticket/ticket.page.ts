@@ -53,7 +53,6 @@ export class TicketPage implements OnInit, OnDestroy {
       next: (t) => {
         this.ticket = t;
         this.isLoading = false;
-        // generate QR after view updates with the canvas element
         setTimeout(() => this.generateQR(), 100);
       }
     });
@@ -74,7 +73,7 @@ export class TicketPage implements OnInit, OnDestroy {
         width: 180,
         margin: 1,
         color: {
-          dark: '#18181b',  // zinc-900
+          dark: '#18181b',
           light: '#ffffff'
         }
       });

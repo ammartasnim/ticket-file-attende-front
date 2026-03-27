@@ -8,13 +8,7 @@ import { UiService } from 'src/app/services/ui-service';
 import { addIcons } from 'ionicons';
 import { addOutline, searchOutline, trashOutline, listOutline } from 'ionicons/icons';
 import { ViewWillEnter } from '@ionic/angular';
-
-export interface ServiceResponse {
-  id: number;
-  name: string;
-  avgTime: number;
-  description: string;
-}
+import { ServiceResponse } from 'src/app/models/service-response';
 
 @Component({
   selector: 'app-manage-services',

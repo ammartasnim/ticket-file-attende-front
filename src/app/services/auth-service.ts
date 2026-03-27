@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginRequest } from '../models/login-request';
-import { BehaviorSubject, lastValueFrom, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { RegisterRequest } from '../models/register-request';
 import { environment } from 'src/environments/environment';
 import { UserResponse } from '../models/user-response';
-import { CounterService } from './counter-service';
 import { Router } from '@angular/router';
 
 @Injectable({

@@ -48,7 +48,6 @@ export class ManageAgentsPage implements ViewWillEnter {
     });
   }
 
-  // FIXED: Logic to filter the list on the frontend
   get filteredAgents() {
     return this.agents.filter(a => 
       a.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
@@ -62,7 +61,7 @@ export class ManageAgentsPage implements ViewWillEnter {
       this.adminService.deleteUser(id).subscribe({
         next: () => {
           this.ui.showToast('Agent deleted', 'success');
-          this.loadAgents(); // Refresh the list
+          this.loadAgents();
         },
         error: () => this.ui.showToast('Error deleting agent', 'danger')
       });

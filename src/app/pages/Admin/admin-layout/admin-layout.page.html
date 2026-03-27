@@ -1,14 +1,11 @@
-<!-- app.component.html -->
 <ion-split-pane contentId="main-content" [when]="true">
   <ion-menu contentId="main-content" type="push">
     <ion-content style="--background: #ffffff;">
 
-      <!-- Logo -->
       <div class="px-6 py-7 border-b border-zinc-100">
         <h1 class="text-base font-semibold text-zinc-900 tracking-tight">Admin Panel</h1>
       </div>
 
-      <!-- Nav -->
       <ion-list lines="none" class="bg-transparent px-3 pt-5">
 
         <ion-item button routerLink="dashboard" routerLinkActive="active-nav" class="nav-item rounded-lg mb-0.5">
@@ -33,7 +30,6 @@
 
       </ion-list>
 
-      <!-- Logout -->
       <div class="absolute bottom-0 left-0 right-0 border-t border-zinc-100 px-3 py-3">
         <ion-item button (click)="logout()" lines="none" class="nav-item logout-item rounded-lg">
           <ion-icon name="log-out-outline" slot="start"></ion-icon>
@@ -44,7 +40,6 @@
     </ion-content>
   </ion-menu>
 
-  <!-- Main content -->
   <div class="ion-page" id="main-content">
     <ion-content style="--background: #fafaf9;">
       <ion-router-outlet></ion-router-outlet>

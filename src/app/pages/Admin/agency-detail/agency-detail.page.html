@@ -1,7 +1,5 @@
-<!-- agency-detail.page.html -->
 <div class="min-h-full p-10">
 
-  <!-- Header -->
   <div class="mb-8 border-b border-zinc-100 pb-8 flex items-start justify-between">
     <div>
       <a routerLink="/admin/agencies"
@@ -14,7 +12,6 @@
       <p class="text-[13px] text-zinc-400 mt-1">{{ agency?.address }}, {{ agency?.city }}</p>
     </div>
 
-    <!-- Open/Close toggle -->
     <button (click)="toggleOpen()"
             class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-medium transition-all mt-10"
             [ngClass]="agency?.open
@@ -25,7 +22,6 @@
     </button>
   </div>
 
-  <!-- Info strip -->
   <div class="grid grid-cols-4 gap-4 mb-10">
     <div class="bg-white border border-zinc-100 rounded-xl p-5">
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-2">Hours</p>
@@ -52,7 +48,6 @@
     </div>
   </div>
 
-  <!-- Counters — read only -->
   <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-4">Counters</p>
   <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
 

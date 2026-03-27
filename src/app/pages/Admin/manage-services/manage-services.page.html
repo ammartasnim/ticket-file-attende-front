@@ -1,7 +1,5 @@
-<!-- manage-services.page.html -->
 <div class="min-h-full p-10">
 
-  <!-- Page header -->
   <div class="mb-8 flex items-end justify-between border-b border-zinc-100 pb-8">
     <div>
       <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Services</h1>
@@ -14,7 +12,6 @@
     </a>
   </div>
 
-  <!-- Search -->
   <div class="bg-white border border-zinc-200 rounded-lg px-4 py-2.5 mb-6 flex items-center gap-3 max-w-sm focus-within:border-zinc-400 transition-colors">
     <ion-icon name="search-outline" class="text-zinc-400 text-base flex-shrink-0"></ion-icon>
     <input type="text"
@@ -23,10 +20,8 @@
            [(ngModel)]="searchTerm">
   </div>
 
-  <!-- Table -->
   <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
 
-    <!-- Table header -->
     <div class="grid grid-cols-12 px-6 py-3 border-b border-zinc-50 bg-zinc-50">
       <span class="col-span-4 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Service</span>
       <span class="col-span-5 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Description</span>
@@ -37,7 +32,6 @@
     @for (service of filteredServices; track service.id) {
       <div class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0 hover:bg-zinc-50 transition-colors">
 
-        <!-- Name -->
         <div class="col-span-4 flex items-center gap-3">
           <div class="w-8 h-8 bg-zinc-100 rounded-lg flex items-center justify-center flex-shrink-0">
             <ion-icon name="list-outline" class="text-zinc-400 text-sm"></ion-icon>
@@ -45,17 +39,14 @@
           <span class="text-[13px] font-medium text-zinc-800">{{ service.name }}</span>
         </div>
 
-        <!-- Description -->
         <div class="col-span-5">
           <span class="text-[12px] text-zinc-400">{{ service.description || '—' }}</span>
         </div>
 
-        <!-- Avg time -->
         <div class="col-span-2">
           <span class="text-[12px] text-zinc-500">{{ service.avgTime }} min</span>
         </div>
 
-        <!-- Actions -->
         <div class="col-span-1 flex items-center justify-end">
           <button (click)="deleteService(service.id)"
                   class="w-7 h-7 flex items-center justify-center rounded-md text-zinc-300 hover:text-red-500 hover:bg-red-50 transition-all">
