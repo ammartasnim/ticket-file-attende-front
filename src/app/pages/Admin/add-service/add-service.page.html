@@ -1,0 +1,55 @@
+<!-- add-service.page.html -->
+<div class="min-h-full p-10">
+
+  <!-- Page header -->
+  <div class="mb-8 border-b border-zinc-100 pb-8">
+    <a (click)="onCancel()"
+       class="inline-flex items-center gap-1.5 text-[12px] text-zinc-400 hover:text-zinc-700 transition-colors mb-5 cursor-pointer no-underline">
+      <ion-icon name="arrow-back-outline" class="text-sm"></ion-icon>
+      Back to Services
+    </a>
+    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Services</p>
+    <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Add New Service</h1>
+  </div>
+
+  <!-- Form -->
+  <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="max-w-2xl">
+
+    <!-- Name -->
+    <div class="flex flex-col gap-1.5 mb-5">
+      <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Service Name</label>
+      <input type="text" formControlName="name" placeholder="Civil Status Certificate"
+             class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
+    </div>
+
+    <!-- Description -->
+    <div class="flex flex-col gap-1.5 mb-5">
+      <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Description</label>
+      <textarea formControlName="description" placeholder="Brief description of this service..." rows="3"
+                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300 resize-none">
+      </textarea>
+    </div>
+
+    <!-- Avg time -->
+    <div class="flex flex-col gap-1.5 mb-5 max-w-xs">
+      <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Average Duration (minutes)</label>
+      <input type="number" formControlName="avgTime" placeholder="15" min="1"
+             class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
+    </div>
+
+    <!-- Submit -->
+    <div class="pt-6 border-t border-zinc-100 mt-8 flex items-center gap-3">
+      <button type="submit"
+              [disabled]="serviceForm.invalid"
+              class="px-6 py-2.5 bg-zinc-900 text-white text-[13px] font-medium rounded-lg hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+        Create Service
+      </button>
+      <a (click)="onCancel()"
+         class="px-5 py-2.5 text-[13px] font-medium text-zinc-400 hover:text-zinc-700 transition-colors cursor-pointer no-underline">
+        Cancel
+      </a>
+    </div>
+
+  </form>
+
+</div>

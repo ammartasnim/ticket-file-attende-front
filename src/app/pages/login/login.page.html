@@ -1,0 +1,61 @@
+<ion-content [fullscreen]="true" class="ion-padding bg-slate-50">
+  <div class="flex flex-col justify-center min-h-full items-center">
+    
+    <div class="w-full max-w-md p-8 bg-white rounded-2xl shadow-lg border border-slate-100">
+      
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-900 text-white rounded-full mb-4 shadow-md">
+          <ion-icon name="mail-outline" class="text-3xl"></ion-icon>
+        </div>
+        <h1 class="text-2xl font-bold text-slate-800">Sign In</h1>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="space-y-6">
+        
+        <div class="space-y-2">
+          <label class="text-xs font-semibold text-slate-600 uppercase tracking-wider ml-1">Email Address</label>
+          <div class="relative flex items-center">
+            <ion-icon name="at-outline" class="absolute left-3 text-slate-400 text-xl z-10"></ion-icon>
+            <ion-input 
+              formControlName="email"
+              type="email"
+              placeholder="name@post.tn"
+              class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all outline-none bg-slate-50 text-slate-800">
+            </ion-input>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-xs font-semibold text-slate-600 uppercase tracking-wider ml-1">Password</label>
+          <div class="relative flex items-center">
+            <ion-icon name="lock-closed-outline" class="absolute left-3 text-slate-400 text-xl z-10"></ion-icon>
+            <ion-input 
+              formControlName="password"
+              type="password"
+              placeholder="••••••••"
+              class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all outline-none bg-slate-50 text-slate-800">
+            </ion-input>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          [disabled]="loginForm.invalid"
+          class="w-full py-4 bg-blue-900 hover:bg-blue-800 disabled:bg-slate-300 text-white font-bold rounded-xl transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2">
+          <span>Login</span>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+
+      </form>
+
+      <div class="mt-6 text-center">
+        <p class="text-sm text-slate-500">
+          Don't have an account? 
+          <a (click)="goToRegister()" class="text-blue-900 font-bold cursor-pointer hover:underline ml-1">Sign Up</a>
+        </p>
+      </div>
+
+
+    </div>
+  </div>
+</ion-content>

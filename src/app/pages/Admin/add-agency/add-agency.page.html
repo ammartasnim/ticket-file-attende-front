@@ -1,0 +1,83 @@
+<!-- add-agency.page.html -->
+<div class="min-h-full p-10">
+
+  <!-- Page header -->
+  <div class="mb-8 border-b border-zinc-100 pb-8">
+    <a (click)="onCancel()"
+       class="inline-flex items-center gap-1.5 text-[12px] text-zinc-400 hover:text-zinc-700 transition-colors mb-5 cursor-pointer no-underline">
+      <ion-icon name="arrow-back-outline" class="text-sm"></ion-icon>
+      Back to Agencies
+    </a>
+    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Agencies</p>
+    <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Add New Agency</h1>
+  </div>
+
+  <!-- Form -->
+  <form [formGroup]="agencyForm" (ngSubmit)="onSubmit()" class="max-w-2xl">
+
+    <!-- Name -->
+    <div class="flex flex-col gap-1.5 mb-5">
+      <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agency Name</label>
+      <input type="text" formControlName="name" placeholder="Horizon Group"
+             class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
+    </div>
+
+    <!-- Address + City -->
+    <div class="grid grid-cols-2 gap-5 mb-5">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Address</label>
+        <input type="text" formControlName="address" placeholder="Avenue Habib Bourguiba"
+               class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">City</label>
+        <input type="text" formControlName="city" placeholder="Tunis"
+               class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
+      </div>
+    </div>
+
+    <!-- Opening + Closing time -->
+    <div class="grid grid-cols-2 gap-5 mb-5">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Opening Time</label>
+        <input type="time" formControlName="openingTime"
+               class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors">
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Closing Time</label>
+        <input type="time" formControlName="closingTime"
+               class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors">
+      </div>
+    </div>
+
+    <!-- Max Capacity + Nbr Counters -->
+    <div class="grid grid-cols-2 gap-5 mb-5">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Max Capacity</label>
+        <input type="number" formControlName="maxCapacity" placeholder="50" min="1"
+               class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Number of Counters</label>
+        <input type="number" formControlName="nbrCounters" placeholder="5" min="1"
+               class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
+        <p class="text-[11px] text-zinc-400 mt-0.5">Counters will be created automatically.</p>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="pt-6 border-t border-zinc-100 mt-8 flex items-center gap-3">
+      <button type="submit"
+              [disabled]="agencyForm.invalid"
+              class="px-6 py-2.5 bg-zinc-900 text-white text-[13px] font-medium rounded-lg hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+        Create Agency
+      </button>
+      <a (click)="onCancel()"
+         class="px-5 py-2.5 text-[13px] font-medium text-zinc-400 hover:text-zinc-700 transition-colors cursor-pointer no-underline">
+        Cancel
+      </a>
+    </div>
+
+  </form>
+
+</div>

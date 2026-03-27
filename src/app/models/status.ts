@@ -1,0 +1,8 @@
+export enum Status {
+    GENERATED = "GENERATED",
+    CALLED = "CALLED",
+    TREATING = "TREATING",
+    COMPLETED = "COMPLETED",
+    EXPIRED = "EXPIRED",
+    CANCELED = "CANCELED"
+}

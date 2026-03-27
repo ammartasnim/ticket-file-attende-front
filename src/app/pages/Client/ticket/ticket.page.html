@@ -1,0 +1,134 @@
+<!-- my-ticket.page.html -->
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #fafaf9; --min-height: 56px;">
+    <ion-buttons slot="start">
+      <button (click)="goBack()"
+              class="flex items-center gap-1.5 pl-2 pr-3 py-2 text-[12px] font-medium text-zinc-500 hover:text-zinc-800 transition-colors">
+        <ion-icon name="chevron-back-outline" class="text-base"></ion-icon>
+        Home
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #fafaf9;">
+  <div class="px-5 pb-10 max-w-sm mx-auto">
+
+    <!-- Ticket card -->
+    <div class="bg-white border border-zinc-100 rounded-2xl overflow-hidden mb-4">
+
+      <!-- Status color strip -->
+      <div class="h-1 w-full"
+           [ngClass]="{
+             'bg-emerald-500': ticket?.status === 'GENERATED',
+             'bg-blue-500': ticket?.status === 'TREATING',
+             'bg-zinc-300': ticket?.status === 'COMPLETED' || ticket?.status === 'CANCELED' || ticket?.status === 'EXPIRED'
+           }">
+      </div>
+
+      <div class="p-6 text-center">
+        <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-5">Your Ticket</p>
+
+        <!-- QR code -->
+        <div class="flex justify-center mb-5">
+          <div class="p-3 bg-white border border-zinc-100 rounded-2xl inline-block">
+            <canvas #qrCanvas></canvas>
+          </div>
+        </div>
+
+        <!-- UUID below QR -->
+        <p class="text-[12px] font-mono text-zinc-400 mb-4 tracking-wider">{{ ticket?.uuid || '—' }}</p>
+
+        <!-- Status badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6"
+             [ngClass]="{
+               'bg-emerald-50': ticket?.status === 'GENERATED',
+               'bg-blue-50': ticket?.status === 'TREATING',
+               'bg-zinc-100': ticket?.status === 'COMPLETED' || ticket?.status === 'CANCELED' || ticket?.status === 'EXPIRED'
+             }">
+          <span class="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                [ngClass]="{
+                  'bg-emerald-500': ticket?.status === 'GENERATED',
+                  'bg-blue-500': ticket?.status === 'TREATING',
+                  'bg-zinc-400': ticket?.status === 'COMPLETED' || ticket?.status === 'CANCELED' || ticket?.status === 'EXPIRED'
+                }">
+          </span>
+          <span class="text-[11px] font-semibold"
+                [ngClass]="{
+                  'text-emerald-700': ticket?.status === 'GENERATED',
+                  'text-blue-700': ticket?.status === 'TREATING',
+                  'text-zinc-500': ticket?.status === 'COMPLETED' || ticket?.status === 'CANCELED' || ticket?.status === 'EXPIRED'
+                }">
+            {{ statusLabel }}
+          </span>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-dashed border-zinc-100 my-4"></div>
+
+        <!-- Info rows -->
+        <div class="space-y-3 text-left">
+
+          <div class="flex justify-between items-center">
+            <span class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">Service</span>
+            <span class="text-[13px] font-medium text-zinc-700">{{ ticket?.serviceName || '—' }}</span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <span class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">Agency</span>
+            <span class="text-[13px] font-medium text-zinc-700">{{ ticket?.agencyName || '—' }}</span>
+          </div>
+
+          @if (ticket?.status === 'TREATING' && ticket?.counterNumber) {
+            <div class="flex justify-between items-center">
+              <span class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">Counter</span>
+              <span class="text-[13px] font-medium text-zinc-700">#{{ ticket?.counterNumber }}</span>
+            </div>
+          }
+
+          @if (ticket?.pin) {
+            <div class="flex justify-between items-center">
+              <span class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">PIN</span>
+              <span class="text-[15px] font-semibold tracking-widest text-zinc-800">{{ ticket?.pin }}</span>
+            </div>
+          }
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Queue stats — GENERATED only -->
+    @if (ticket?.status === 'GENERATED' || !ticket) {
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white border border-zinc-100 rounded-2xl p-5 text-center">
+          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-2">Position</p>
+          <p class="text-4xl font-light text-zinc-800">{{ position !== null ? position : '—' }}</p>
+          <p class="text-[10px] text-zinc-400 mt-1">in queue</p>
+        </div>
+        <div class="bg-white border border-zinc-100 rounded-2xl p-5 text-center">
+          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-2">Est. Wait</p>
+          <p class="text-4xl font-light text-zinc-800">{{ waitTime !== null ? waitTime : '—' }}</p>
+          <p class="text-[10px] text-zinc-400 mt-1">minutes</p>
+        </div>
+      </div>
+      <p class="text-center text-[10px] text-zinc-400 mb-6">Updates every 30 seconds</p>
+    }
+
+    <!-- Being served -->
+    @if (ticket?.status === 'TREATING') {
+      <div class="bg-blue-50 border border-blue-100 rounded-2xl p-5 text-center mb-4">
+        <p class="text-sm font-semibold text-blue-800 mb-1">It's your turn!</p>
+        <p class="text-[12px] text-blue-600">Please proceed to counter #{{ ticket?.counterNumber }}</p>
+      </div>
+    }
+
+    <!-- Leave queue -->
+    @if (ticket?.status === 'GENERATED') {
+      <button (click)="cancelTicket()"
+              class="w-full py-3.5 rounded-2xl border border-zinc-200 text-[13px] font-medium text-zinc-400 hover:border-red-200 hover:text-red-500 hover:bg-red-50 transition-all active:scale-[0.98]">
+        Leave Queue
+      </button>
+    }
+
+  </div>
+</ion-content>

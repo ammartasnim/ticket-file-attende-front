@@ -1,0 +1,31 @@
+/* Add these to your global styles.scss or app.component.scss */
+
+/* Nav item base reset */
+.nav-item {
+  --background: transparent;
+  --background-hover: #f4f4f5;
+  --color: #a1a1aa;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --inner-padding-end: 0;
+  --border-radius: 8px;
+  --min-height: 38px;
+}
+
+.nav-item.active-nav {
+  --background: #f4f4f5;
+  --color: #18181b;
+  font-weight: 500;
+  padding-left: 4px; 
+}
+
+/* Logout hover override */
+.logout-item {
+  --background-hover: #fef2f2;
+  --color-hover: #ef4444;
+}
+
+/* Remove Ionic's default inner border */
+ion-item::part(native) {
+  border-radius: 8px;
+}

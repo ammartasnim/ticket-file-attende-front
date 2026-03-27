@@ -1,0 +1,94 @@
+<ion-content [fullscreen]="true" class="ion-padding bg-slate-50">
+  <div class="flex flex-col justify-center min-h-full items-center py-8">
+    
+    <div class="w-full max-w-xl p-8 bg-white rounded-2xl shadow-lg border border-slate-100">
+      
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-900 text-white rounded-full mb-4 shadow-md">
+          <ion-icon name="person-add-outline" class="text-3xl"></ion-icon>
+        </div>
+        <h1 class="text-2xl font-bold text-slate-800">Create Account</h1>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="space-y-4">
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="text-xs font-semibold text-slate-600 uppercase ml-1">First Name</label>
+            <ion-input 
+              formControlName="firstName"
+              type="text"
+              placeholder="John"
+              class="w-full border border-slate-200 rounded-xl outline-none bg-slate-50">
+            </ion-input>
+          </div>
+          <div class="space-y-1">
+            <label class="text-xs font-semibold text-slate-600 uppercase ml-1">Last Name</label>
+            <ion-input 
+              formControlName="lastName"
+              type="text"
+              placeholder="Doe"
+              class="w-full border border-slate-200 rounded-xl outline-none bg-slate-50">
+            </ion-input>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-600 uppercase ml-1">Email Address</label>
+          <div class="relative flex items-center with-icon">
+            <ion-icon name="at-outline" class="absolute left-3 text-slate-400 text-xl z-10"></ion-icon>
+            <ion-input 
+              formControlName="email"
+              type="email"
+              placeholder="john.doe@email.com"
+              class="w-full border border-slate-200 rounded-xl outline-none bg-slate-50">
+            </ion-input>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-600 uppercase ml-1">Phone Number</label>
+          <div class="relative flex items-center with-icon">
+            <ion-icon name="call-outline" class="absolute left-3 text-slate-400 text-xl z-10"></ion-icon>
+            <ion-input 
+              formControlName="phoneNumber"
+              type="tel"
+              placeholder="+216 -- --- ---"
+              class="w-full border border-slate-200 rounded-xl outline-none bg-slate-50">
+            </ion-input>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-600 uppercase ml-1">Password</label>
+          <div class="relative flex items-center with-icon">
+            <ion-icon name="lock-closed-outline" class="absolute left-3 text-slate-400 text-xl z-10"></ion-icon>
+            <ion-input 
+              formControlName="password"
+              type="password"
+              placeholder="••••••••"
+              class="w-full border border-slate-200 rounded-xl outline-none bg-slate-50">
+            </ion-input>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          [disabled]="registerForm.invalid"
+          class="w-full mt-4 py-4 bg-blue-900 hover:bg-blue-800 disabled:bg-slate-300 text-white font-bold rounded-xl transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2">
+          <span>Sign Up</span>
+          <ion-icon name="person-add-outline"></ion-icon>
+        </button>
+
+      </form>
+
+      <div class="mt-6 text-center">
+        <p class="text-sm text-slate-500">
+          Already have an account? 
+          <a (click)="goToLogin()" class="text-blue-900 font-bold cursor-pointer hover:underline ml-1">Sign In</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,86 @@
+<!-- agents.page.html -->
+<div class="min-h-full p-10">
+
+  <!-- Page header -->
+  <div class="mb-8 flex items-end justify-between border-b border-zinc-100 pb-8">
+    <div>
+      <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Agents</h1>
+      <p class="text-[13px] text-zinc-400 mt-1">Manage staff accounts.</p>
+    </div>
+    <a routerLink="/admin/agents/add"
+       class="flex items-center gap-2 px-4 py-2.5 bg-zinc-900 rounded-lg text-[13px] font-medium text-white hover:bg-zinc-700 transition-all cursor-pointer no-underline">
+      <ion-icon name="person-add-outline" class="text-base"></ion-icon>
+      Create Agent
+    </a>
+  </div>
+
+  <!-- Search -->
+  <div class="bg-white border border-zinc-200 rounded-lg px-4 py-2.5 mb-6 flex items-center gap-3 max-w-sm focus-within:border-zinc-400 transition-colors">
+    <ion-icon name="search-outline" class="text-zinc-400 text-base flex-shrink-0"></ion-icon>
+    <input type="text"
+           placeholder="Search by name or email..."
+           class="w-full bg-transparent border-none outline-none text-[13px] text-zinc-700 placeholder-zinc-300"
+           [(ngModel)]="searchTerm">
+  </div>
+
+  <!-- Table -->
+  <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
+
+    <!-- Table header -->
+    <div class="grid grid-cols-12 px-6 py-3 border-b border-zinc-50 bg-zinc-50">
+      <span class="col-span-4 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agent</span>
+      <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Email</span>
+      <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agency</span>
+      <span class="col-span-1 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Counter</span>
+      <span class="col-span-1"></span>
+    </div>
+
+    @for (agent of filteredAgents; track agent.id) {
+      <div class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0 hover:bg-zinc-50 transition-colors">
+
+        <!-- Name + avatar -->
+        <div class="col-span-4 flex items-center gap-3">
+          <div class="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center text-[11px] font-semibold text-zinc-500 flex-shrink-0">
+            {{ agent.firstName[0] }}{{ agent.lastName[0] }}
+          </div>
+          <span class="text-[13px] font-medium text-zinc-800">{{ agent.firstName }} {{ agent.lastName }}</span>
+        </div>
+
+        <!-- Email -->
+        <div class="col-span-3">
+          <span class="text-[12px] text-zinc-400">{{ agent.email }}</span>
+        </div>
+
+        <!-- Agency -->
+        <div class="col-span-3">
+          <span class="text-[12px] text-zinc-500">{{ agent.agencyName || '—' }}</span>
+        </div>
+
+        <!-- Counter -->
+        <div class="col-span-1">
+          <span class="text-[12px] font-medium text-zinc-600">
+            {{ agent.counterNumber ? '#' + agent.counterNumber : '—' }}
+          </span>
+        </div>
+
+        <!-- Actions -->
+        <div class="col-span-1 flex items-center justify-end gap-1">
+          <button (click)="deleteAgent(agent.id)"
+                  class="w-7 h-7 flex items-center justify-center rounded-md text-zinc-300 hover:text-red-500 hover:bg-red-50 transition-all">
+            <ion-icon name="trash-outline" class="text-sm"></ion-icon>
+          </button>
+        </div>
+
+      </div>
+    }
+
+    @if (agents.length === 0) {
+      <div class="py-20 text-center">
+        <ion-icon name="people-outline" class="text-3xl text-zinc-200 mb-2"></ion-icon>
+        <p class="text-[13px] text-zinc-400">No agents found in the system.</p>
+      </div>
+    }
+
+  </div>
+
+</div>

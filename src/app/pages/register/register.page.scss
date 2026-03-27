@@ -1,0 +1,14 @@
+/* Base style for all inputs in this page */
+ion-input {
+  --color: #1e293b !important;
+  --placeholder-color: #94a3b8 !important;
+  --placeholder-opacity: 1;
+  --caret-color: #2563eb;
+  /* Default padding for inputs WITHOUT icons */
+  --padding-start: 12px !important; 
+}
+
+/* Specific style for inputs that have an icon next to them */
+.with-icon ion-input {
+  --padding-start: 40px !important;
+}

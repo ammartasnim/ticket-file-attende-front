@@ -1,0 +1,12 @@
+/* add-agent.page.scss */
+
+.agency-select {
+  --placeholder-color: #d4d4d8;
+  --placeholder-opacity: 1;
+  min-height: 40px;
+  height: 40px;
+
+  &::part(container) {
+    font-size: 13px;
+  }
+}
