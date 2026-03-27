@@ -2,20 +2,20 @@
 
   <div class="mb-8 flex items-end justify-between border-b border-zinc-100 pb-8">
     <div>
-      <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Agencies</h1>
-      <p class="text-[13px] text-zinc-400 mt-1">Manage branch offices and locations.</p>
+      <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Agences</h1>
+      <p class="text-[13px] text-zinc-400 mt-1">Gérer les succursales et les emplacements.</p>
     </div>
     <a routerLink="/admin/agencies/add"
       class="flex items-center gap-2 px-4 py-2.5 bg-zinc-900 rounded-lg text-[13px] font-medium text-white hover:bg-zinc-700 transition-all cursor-pointer no-underline">
       <ion-icon name="add-outline" class="text-base"></ion-icon>
-      Add Agency
+      Ajouter une Agence
     </a>
   </div>
 
   <div
     class="bg-white border border-zinc-200 rounded-lg px-4 py-2.5 mb-6 flex items-center gap-3 max-w-sm focus-within:border-zinc-400 transition-colors">
     <ion-icon name="search-outline" class="text-zinc-400 text-base flex-shrink-0"></ion-icon>
-    <input type="text" placeholder="Search by name or city..."
+    <input type="text" placeholder="Rechercher par nom ou ville..."
       class="w-full bg-transparent border-none outline-none text-[13px] text-zinc-700 placeholder-zinc-300"
       [(ngModel)]="searchTerm">
   </div>
@@ -23,12 +23,12 @@
   <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
 
     <div class="grid grid-cols-12 px-6 py-3 border-b border-zinc-50 bg-zinc-50">
-      <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agency</span>
-      <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">City</span>
-      <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Hours</span>
-      <span class="col-span-1 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Capacity</span>
+      <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agence</span>
+      <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Ville</span>
+      <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Horaires</span>
+      <span class="col-span-1 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Capacité</span>
       <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Services</span>
-      <span class="col-span-1 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Status</span>
+      <span class="col-span-1 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Statut</span>
       <span class="col-span-1"></span>
     </div>
 
@@ -70,7 +70,7 @@
         <span class="inline-flex items-center gap-1.5">
           <span class="w-1.5 h-1.5 rounded-full" [ngClass]="agency.open ? 'bg-emerald-500' : 'bg-zinc-300'"></span>
           <span class="text-[11px] font-medium" [ngClass]="agency.open ? 'text-emerald-600' : 'text-zinc-400'">
-            {{ agency.open ? 'Open' : 'Closed' }}
+            {{ agency.open ? 'Ouvert' : 'Fermé' }}
           </span>
         </span>
       </div>
@@ -79,13 +79,13 @@
         
         <button (click)="viewAgency(agency.id)"
           class="w-7 h-7 flex items-center justify-center rounded-md text-zinc-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
-          title="View Details">
+          title="Voir les détails">
           <ion-icon name="eye-outline" class="text-sm"></ion-icon>
         </button>
 
         <button (click)="$event.stopPropagation(); deleteAgency(agency.id)"
           class="w-7 h-7 flex items-center justify-center rounded-md text-zinc-300 hover:text-red-500 hover:bg-red-50 transition-all"
-          title="Delete Agency">
+          title="Supprimer l'agence">
           <ion-icon name="trash-outline" class="text-sm"></ion-icon>
         </button>
         
@@ -97,7 +97,7 @@
     @if (agencies.length === 0) {
     <div class="py-20 text-center">
       <ion-icon name="business-outline" class="text-3xl text-zinc-200 mb-2"></ion-icon>
-      <p class="text-[13px] text-zinc-400">No agencies found in the system.</p>
+      <p class="text-[13px] text-zinc-400">Aucune agence trouvée dans le système.</p>
     </div>
     }
 

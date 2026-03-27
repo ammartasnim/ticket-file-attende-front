@@ -2,19 +2,19 @@
   <ion-toolbar style="--background: #ffffff; --min-height: 70px;">
     <ion-title>
       <div class="flex flex-col">
-        <span class="text-[10px] font-bold tracking-widest uppercase text-zinc-400">Welcome</span>
-        <span class="text-lg font-semibold text-zinc-800">Find an Agency</span>
+        <span class="text-[10px] font-bold tracking-widest uppercase text-zinc-400">Bienvenue</span>
+        <span class="text-lg font-semibold text-zinc-800">Trouver une Agence</span>
       </div>
     </ion-title>
     <ion-buttons slot="end">
        <button (click)="goToHistory()"
               class="flex items-center gap-2 px-4 py-2 bg-zinc-50 border border-zinc-100 rounded-xl text-[12px] font-medium text-zinc-500 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-100 transition-all active:scale-95">
-        <span>History</span>
+        <span>Historique</span>
     <ion-icon name="receipt-outline" class="text-lg"></ion-icon>
   </button>
       <button (click)="onLogout()"
               class="flex items-center gap-2 px-4 py-2 bg-zinc-50 border border-zinc-100 rounded-xl text-[12px] font-medium text-zinc-500 hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all active:scale-95">
-        <span>Logout</span>
+        <span>Déconnexion</span>
         <ion-icon name="log-out-outline" class="text-base"></ion-icon>
       </button>
     </ion-buttons>
@@ -27,7 +27,7 @@
     <div class="relative mb-5">
       <ion-icon name="search-outline" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-lg z-10"></ion-icon>
       <input type="text"
-             placeholder="Search by city or name..."
+             placeholder="Rechercher par ville ou nom..."
              [(ngModel)]="searchQuery"
              class="w-full bg-white border border-zinc-200 rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-zinc-400 transition-all">
     </div>
@@ -45,12 +45,12 @@
               <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
             </span>
             <div>
-              <p class="text-[13px] font-semibold text-zinc-800">You're in the queue</p>
-              <p class="text-[11px] text-zinc-400 mt-0.5">Tap to track your position</p>
+              <p class="text-[13px] font-semibold text-zinc-800">Vous êtes dans la file d'attente</p>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Appuyez pour suivre votre position</p>
             </div>
           </div>
           <div class="flex items-center gap-1 text-zinc-400">
-            <span class="text-[11px] font-medium">View</span>
+            <span class="text-[11px] font-medium">Voir</span>
             <ion-icon name="chevron-forward-outline" class="text-sm"></ion-icon>
           </div>
         </div>
@@ -58,7 +58,7 @@
       </div>
     }
 
-    <h2 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4 px-1">Agencies</h2>
+    <h2 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4 px-1">Agences</h2>
 
     <div class="space-y-3">
       @for (agency of filteredAgencies; track agency.id) {
@@ -75,7 +75,7 @@
                     [ngClass]="agency.open ? 'bg-emerald-500' : 'bg-zinc-300'"></span>
               <span class="text-[10px] font-semibold uppercase tracking-widest"
                     [ngClass]="agency.open ? 'text-emerald-600' : 'text-zinc-400'">
-                {{ agency.open ? 'Open' : 'Closed' }}
+                {{ agency.open ? 'Ouvert' : 'Fermé' }}
               </span>
             </div>
           </div>
@@ -85,7 +85,7 @@
 
       @if (filteredAgencies.length === 0) {
         <div class="py-16 text-center">
-          <p class="text-sm text-zinc-400">No agencies found.</p>
+          <p class="text-sm text-zinc-400">Aucune agence trouvée.</p>
         </div>
       }
     </div>

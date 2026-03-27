@@ -4,28 +4,28 @@
     <a (click)="onCancel()"
        class="inline-flex items-center gap-1.5 text-[12px] text-zinc-400 hover:text-zinc-700 transition-colors mb-5 cursor-pointer no-underline">
       <ion-icon name="arrow-back-outline" class="text-sm"></ion-icon>
-      Back to Agencies
+      Retour aux Agences
     </a>
-    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Agencies</p>
-    <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Add New Agency</h1>
+    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Agences</p>
+    <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Ajouter une Nouvelle Agence</h1>
   </div>
 
   <form [formGroup]="agencyForm" (ngSubmit)="onSubmit()" class="max-w-2xl">
 
     <div class="flex flex-col gap-1.5 mb-5">
-      <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agency Name</label>
+      <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Nom de l'Agence</label>
       <input type="text" formControlName="name" placeholder="Horizon Group"
              class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
     </div>
 
     <div class="grid grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Address</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Adresse</label>
         <input type="text" formControlName="address" placeholder="Avenue Habib Bourguiba"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">City</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Ville</label>
         <input type="text" formControlName="city" placeholder="Tunis"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
@@ -33,12 +33,12 @@
 
     <div class="grid grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Opening Time</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Heure d'Ouverture</label>
         <input type="time" formControlName="openingTime"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors">
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Closing Time</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Heure de Fermeture</label>
         <input type="time" formControlName="closingTime"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors">
       </div>
@@ -46,15 +46,15 @@
 
     <div class="grid grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Max Capacity</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Capacité Max</label>
         <input type="number" formControlName="maxCapacity" placeholder="50" min="1"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Number of Counters</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Nombre de Guichets</label>
         <input type="number" formControlName="nbrCounters" placeholder="5" min="1"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
-        <p class="text-[11px] text-zinc-400 mt-0.5">Counters will be created automatically.</p>
+        <p class="text-[11px] text-zinc-400 mt-0.5">Les guichets seront créés automatiquement.</p>
       </div>
     </div>
 
@@ -62,11 +62,11 @@
       <button type="submit"
               [disabled]="agencyForm.invalid"
               class="px-6 py-2.5 bg-zinc-900 text-white text-[13px] font-medium rounded-lg hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-        Create Agency
+        Créer l'Agence
       </button>
       <a (click)="onCancel()"
          class="px-5 py-2.5 text-[13px] font-medium text-zinc-400 hover:text-zinc-700 transition-colors cursor-pointer no-underline">
-        Cancel
+        Annuler
       </a>
     </div>
 

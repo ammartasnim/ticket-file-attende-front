@@ -3,9 +3,9 @@
   <div class="mb-10 flex items-end justify-between border-b border-zinc-100 pb-8">
     <div>
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Admin</p>
-      <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Dashboard</h1>
+      <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Tableau de Bord</h1>
     </div>
-    <span class="text-[11px] text-zinc-400">{{ today | date:'EEEE, MMMM d, y' }}</span>
+    <span class="text-[11px] text-zinc-400">{{ today | date:'EEEE, d MMMM y' }}</span>
   </div>
 
   @if (isLoading) {
@@ -25,7 +25,7 @@
 
       <div class="bg-white border border-zinc-100 rounded-xl p-6 flex flex-col gap-3">
         <div class="flex items-center justify-between">
-          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agencies</p>
+          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agences</p>
           <div class="w-8 h-8 rounded-lg bg-zinc-50 flex items-center justify-center">
             <ion-icon name="business-outline" class="text-zinc-400 text-sm"></ion-icon>
           </div>
@@ -33,7 +33,7 @@
         <h2 class="text-4xl font-light text-zinc-900 tracking-tight">{{ stats.totalAgencies }}</h2>
         <a routerLink="/admin/agencies"
            class="flex items-center gap-1 text-[11px] text-zinc-400 hover:text-zinc-700 transition-colors no-underline cursor-pointer">
-          View all
+          Tout voir
           <ion-icon name="arrow-forward-outline" class="text-xs"></ion-icon>
         </a>
       </div>
@@ -48,20 +48,20 @@
         <h2 class="text-4xl font-light text-zinc-900 tracking-tight">{{ stats.totalAgents }}</h2>
         <a routerLink="/admin/agents"
            class="flex items-center gap-1 text-[11px] text-zinc-400 hover:text-zinc-700 transition-colors no-underline cursor-pointer">
-          View all
+          Tout voir
           <ion-icon name="arrow-forward-outline" class="text-xs"></ion-icon>
         </a>
       </div>
 
       <div class="bg-white border border-zinc-100 rounded-xl p-6 flex flex-col gap-3">
         <div class="flex items-center justify-between">
-          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Today's Tickets</p>
+          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Tickets du Jour</p>
           <div class="w-8 h-8 rounded-lg bg-zinc-50 flex items-center justify-center">
             <ion-icon name="ticket-outline" class="text-zinc-400 text-sm"></ion-icon>
           </div>
         </div>
         <h2 class="text-4xl font-light text-zinc-900 tracking-tight">{{ stats.todayTickets }}</h2>
-        <p class="text-[11px] text-zinc-400">across all agencies</p>
+        <p class="text-[11px] text-zinc-400">sur toutes les agences</p>
       </div>
 
     </div>
@@ -73,7 +73,7 @@
           <ion-icon name="desktop-outline" class="text-emerald-500"></ion-icon>
         </div>
         <div>
-          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Active Counters</p>
+          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Guichets Actifs</p>
           <p class="text-2xl font-light text-zinc-800">{{ stats.activeCounters }}</p>
         </div>
       </div>
@@ -83,7 +83,7 @@
           <ion-icon name="ticket-outline" class="text-amber-500"></ion-icon>
         </div>
         <div>
-          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Waiting Now</p>
+          <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">En Attente</p>
           <p class="text-2xl font-light text-zinc-800">{{ stats.waitingTickets }}</p>
         </div>
       </div>
@@ -92,17 +92,17 @@
   }
 
   <div class="mb-12">
-    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-4">Quick Actions</p>
+    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-4">Actions Rapides</p>
     <div class="flex gap-3">
       <a routerLink="/admin/agencies/add"
          class="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-200 rounded-lg text-[13px] font-medium text-zinc-700 hover:border-zinc-400 hover:text-zinc-900 transition-all cursor-pointer no-underline">
         <ion-icon name="add-outline" class="text-base"></ion-icon>
-        New Agency
+        Nouvelle Agence
       </a>
       <a routerLink="/admin/agents/add"
          class="flex items-center gap-2 px-4 py-2.5 bg-zinc-900 rounded-lg text-[13px] font-medium text-white hover:bg-zinc-700 transition-all cursor-pointer no-underline">
         <ion-icon name="person-add-outline" class="text-base"></ion-icon>
-        Add Agent
+        Ajouter un Agent
       </a>
     </div>
   </div>

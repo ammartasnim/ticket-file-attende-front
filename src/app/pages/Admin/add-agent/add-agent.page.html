@@ -4,35 +4,35 @@
     <a (click)="onCancel()"
        class="inline-flex items-center gap-1.5 text-[12px] text-zinc-400 hover:text-zinc-700 transition-colors mb-5 cursor-pointer no-underline">
       <ion-icon name="arrow-back-outline" class="text-sm"></ion-icon>
-      Back to Agents
+      Retour aux Agents
     </a>
-    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Staff</p>
-    <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Create Agent Account</h1>
+    <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Personnel</p>
+    <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Créer un Compte Agent</h1>
   </div>
 
   <form [formGroup]="agentForm" (ngSubmit)="onSubmit()" class="max-w-2xl">
 
     <div class="grid grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">First Name</label>
-        <input type="text" formControlName="firstName" placeholder="John"
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Prénom</label>
+        <input type="text" formControlName="firstName" placeholder="Jean"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Last Name</label>
-        <input type="text" formControlName="lastName" placeholder="Doe"
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Nom</label>
+        <input type="text" formControlName="lastName" placeholder="Dupont"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
     </div>
 
     <div class="grid grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Work Email</label>
-        <input type="email" formControlName="email" placeholder="john.doe@agency.com"
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">E-mail Professionnel</label>
+        <input type="email" formControlName="email" placeholder="jean.dupont@agence.com"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Phone Number</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Numéro de Téléphone</label>
         <input type="text" formControlName="phoneNumber" placeholder="+216 ..."
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
@@ -40,14 +40,14 @@
 
     <div class="grid grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Initial Password</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Mot de Passe Initial</label>
         <input type="password" formControlName="password" placeholder="••••••••"
                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors placeholder-zinc-300">
       </div>
       <div class="flex flex-col gap-1.5">
-        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Assigned Agency</label>
+        <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agence Assignée</label>
         <ion-select formControlName="agencyId"
-                    placeholder="Select agency"
+                    placeholder="Sélectionner une agence"
                     interface="popover"
                     class="agency-select bg-white border border-zinc-200 rounded-lg px-3.5 text-[13px] text-zinc-800">
           @for (agency of agencies; track agency.id) {
@@ -61,11 +61,11 @@
       <button type="submit"
               [disabled]="agentForm.invalid"
               class="px-6 py-2.5 bg-zinc-900 text-white text-[13px] font-medium rounded-lg hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-        Register Agent
+        Enregistrer l'Agent
       </button>
       <a (click)="onCancel()"
          class="px-5 py-2.5 text-[13px] font-medium text-zinc-400 hover:text-zinc-700 transition-colors cursor-pointer no-underline">
-        Cancel
+        Annuler
       </a>
     </div>
 
