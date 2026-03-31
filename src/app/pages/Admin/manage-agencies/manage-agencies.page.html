@@ -23,11 +23,10 @@
   <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
 
     <div class="grid grid-cols-12 px-6 py-3 border-b border-zinc-50 bg-zinc-50">
-      <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agence</span>
-      <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Ville</span>
+      <span class="col-span-4 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agence</span>
+      <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Ville</span>
       <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Horaires</span>
       <span class="col-span-1 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Capacité</span>
-      <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Services</span>
       <span class="col-span-1 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Statut</span>
       <span class="col-span-1"></span>
     </div>
@@ -36,7 +35,7 @@
     <div
       class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0 hover:bg-zinc-50 transition-colors">
 
-      <div class="col-span-3 flex items-center gap-3">
+      <div class="col-span-4 flex items-center gap-3">
         <div class="w-8 h-8 bg-zinc-100 rounded-lg flex items-center justify-center flex-shrink-0">
           <ion-icon name="business-outline" class="text-zinc-400 text-sm"></ion-icon>
         </div>
@@ -46,7 +45,7 @@
         </div>
       </div>
 
-      <div class="col-span-2">
+      <div class="col-span-3">
         <span class="text-[12px] text-zinc-500">{{ agency.city || '—' }}</span>
       </div>
 
@@ -60,12 +59,6 @@
         <span class="text-[12px] text-zinc-500">{{ agency.maxCapacity }}</span>
       </div>
 
-      <div class="col-span-2">
-        <span class="text-[12px] text-zinc-400">
-          {{ agency.serviceNames?.length ? agency.serviceNames.join(', ') : '—' }}
-        </span>
-      </div>
-
       <div class="col-span-1">
         <span class="inline-flex items-center gap-1.5">
           <span class="w-1.5 h-1.5 rounded-full" [ngClass]="agency.open ? 'bg-emerald-500' : 'bg-zinc-300'"></span>
@@ -76,7 +69,6 @@
       </div>
 
       <div class="col-span-1 flex items-center justify-end gap-1">
-        
         <button (click)="viewAgency(agency.id)"
           class="w-7 h-7 flex items-center justify-center rounded-md text-zinc-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
           title="Voir les détails">
@@ -88,7 +80,6 @@
           title="Supprimer l'agence">
           <ion-icon name="trash-outline" class="text-sm"></ion-icon>
         </button>
-        
       </div>
 
     </div>

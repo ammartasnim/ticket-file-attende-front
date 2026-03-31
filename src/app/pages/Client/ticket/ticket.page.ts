@@ -8,8 +8,10 @@ import { UiService } from 'src/app/services/ui-service';
 import { TicketResponse } from 'src/app/models/ticket-response';
 import { Status } from 'src/app/models/status';
 import { addIcons } from 'ionicons';
-import { closeOutline, chevronBackOutline, timeOutline, locationOutline, ticketOutline } from 'ionicons/icons';
+import { closeOutline, chevronBackOutline, timeOutline, locationOutline, ticketOutline, pin } from 'ionicons/icons';
 import QRCode from 'qrcode';
+import { AgencyService } from 'src/app/services/agency-service';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 @Component({
   selector: 'app-ticket',
@@ -23,7 +25,7 @@ export class TicketPage implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private ticketService = inject(TicketService);
-  private authService = inject(AuthService);
+  private agencyService = inject(AgencyService);
   private ui = inject(UiService);
 
   ticketId!: number;
@@ -31,6 +33,8 @@ export class TicketPage implements OnInit, OnDestroy {
   position: number | null = null;
   waitTime: number | null = null;
   isLoading = true;
+  openingTimeStr: string = '—';
+closingTimeStr: string = '—';
 
   private pollInterval: any;
 
@@ -53,6 +57,18 @@ export class TicketPage implements OnInit, OnDestroy {
       next: (t) => {
         this.ticket = t;
         this.isLoading = false;
+        if (t.agencyName) {
+        this.agencyService.getAgencyByName(t.agencyName).subscribe({
+          next: (agency) => {
+            console.log('Agency details:', agency);
+            this.openingTimeStr = agency.openingTime;
+            this.closingTimeStr = agency.closingTime;
+          }
+        });
+      }
+    if (this.ticket?.status === 'TREATING') {
+      this.notifyUser();
+    }
         setTimeout(() => this.generateQR(), 100);
       }
     });
@@ -66,10 +82,47 @@ export class TicketPage implements OnInit, OnDestroy {
     });
   }
 
+  async notifyUser() {
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          title: "C'est votre tour !",
+          body: `Veuillez vous diriger vers le guichet n°${this.ticket?.counterNumber}`,
+          id: 1,
+          schedule: { at: new Date(Date.now() + 1000) },
+          sound: 'beep.wav',
+          actionTypeId: '',
+          extra: null
+        }
+      ]
+    });
+  }
+
   async generateQR() {
     if (!this.ticket?.uuid || !this.qrCanvas?.nativeElement) return;
     try {
-      await QRCode.toCanvas(this.qrCanvas.nativeElement, this.ticket.uuid, {
+      // const qrData = {
+      //   ticketNumber: this.ticket.uuid,
+      //   pin: this.ticket.pin,
+      //   client: this.authService.currentUser?.firstName + ' ' + this.authService.currentUser?.lastName || 'Client',
+      //   service: this.ticket.serviceName,
+      //   agency: this.ticket.agencyName,
+      //   date: this.ticket.appointmentDate,
+      //   status: this.statusLabel
+      // };
+
+      // const qrString = JSON.stringify(qrData);
+      const qrText = `
+Informations du ticket
+----------------------
+Ticket: ${this.ticket.pin}
+Service: ${this.ticket.serviceName}
+Agence: ${this.ticket.agencyName}
+Date: ${this.ticket.appointmentDate}
+ID: ${this.ticket.uuid}
+    `.trim();
+
+      await QRCode.toCanvas(this.qrCanvas.nativeElement, qrText, {
         width: 180,
         margin: 1,
         color: {
@@ -84,12 +137,12 @@ export class TicketPage implements OnInit, OnDestroy {
 
   get statusLabel(): string {
     switch (this.ticket?.status) {
-      case Status.GENERATED:   return 'GENERATED';
-      case Status.TREATING:  return 'Being Served';
+      case Status.GENERATED: return 'Generated';
+      case Status.TREATING: return 'Being Served';
       case Status.COMPLETED: return 'Completed';
-      case Status.CANCELED: return 'CANCELED';
-      case Status.EXPIRED:   return 'Expired';
-      default:               return 'In Queue';
+      case Status.CANCELED: return 'Canceled';
+      case Status.EXPIRED: return 'Expired';
+      default: return 'Called';
     }
   }
 

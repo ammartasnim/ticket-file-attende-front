@@ -1,4 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8081'
+   apiUrl: 'http://localhost:8081'
+  // apiUrl : 'https://172.16.29.35:4200/'
+  //apiUrl: 'https://projspring-production.up.railway.app/api'
+  //apiUrl: 'http://197.240.177.106:8081/api'
 };

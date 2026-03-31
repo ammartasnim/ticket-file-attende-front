@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AgencyService {
-  private readonly http= inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private readonly API_URL = `${environment.apiUrl}/agencies`;
 
 
@@ -19,6 +19,11 @@ export class AgencyService {
 
   getAgencyByCity(city: string): Observable<AgencyResponse[]> {
     return this.http.get<AgencyResponse[]>(`${this.API_URL}/city/${city}`);
+  }
+
+  getAgencyByName(name: string): Observable<AgencyResponse> {
+    const encodedName = encodeURIComponent(name);
+    return this.http.get<AgencyResponse>(`${this.API_URL}/name/${encodedName}`);
   }
 
   getAgencyById(id: number): Observable<AgencyResponse> {

@@ -31,7 +31,6 @@ export class AgencyDetailsPage implements OnInit {
   agencyId!: number;
   selectedAgency: AgencyResponse | null = null;
   services: any[] = [];
-
   selectedServiceId: number | null = null;
   selectedDate: 'today' | 'tomorrow' = 'today';
 
@@ -40,8 +39,7 @@ export class AgencyDetailsPage implements OnInit {
   }
 
 
-  rawPredictedDate: string = ''; 
-  predictedTime: string = '';
+  rawPredictedDate: string = '';
 
   ngOnInit() {
     this.agencyId = Number(this.route.snapshot.paramMap.get('id'));
@@ -73,59 +71,70 @@ export class AgencyDetailsPage implements OnInit {
 
   async updatePredictedTime() {
     if (!this.selectedServiceId) return;
-
     const isTomorrow = this.selectedDate === 'tomorrow';
     this.ticketService.getEarliestTime(this.agencyId, this.selectedServiceId, isTomorrow)
       .subscribe({
         next: (time) => {
           this.rawPredictedDate = time;
-          this.predictedTime = new Date(time).toLocaleTimeString([], { 
-            hour: '2-digit', 
-            minute: '2-digit' 
-          });
-        },
-        error: () => this.predictedTime = 'N/A'
+        }
       });
   }
+ 
 
-  
   async bookTicket() {
-  const user = this.authService.currentUser;
-  
-  if (!user || !user.id) {
-    this.ui.showToast('Please login to continue', 'warning');
-    return;
-  }
+    const user = this.authService.currentUser;
 
-  if (!this.rawPredictedDate) {
-    this.ui.showToast('Please wait for the estimated time to load...', 'warning');
-    this.updatePredictedTime(); 
-    return;
-  }
-
-  const loader = await this.ui.showLoading('Reserving...');
-  
-  const cleanDate = this.rawPredictedDate.split('.')[0];
-  console.log('Sending Date:', cleanDate);
-
-  const request: TicketRequest = {
-    clientId: user.id,
-    serviceId: this.selectedServiceId!,
-    agencyId: this.agencyId,
-    appointmentDate: cleanDate
-  };
-
-  this.ticketService.generateTicket(request).subscribe({
-    next: (ticket) => {
-      loader.dismiss();
-      this.router.navigate(['ticket', ticket.id]);
-    },
-    error: (err) => {
-      loader.dismiss();
-      this.ui.showToast(err.error?.message || 'Error', 'danger');
+    if (!user || !user.id) {
+      this.ui.showToast('Please login to continue', 'warning');
+      return;
     }
-  });
-}
+
+    if (!this.rawPredictedDate) {
+      this.ui.showToast('Please wait for the estimated time to load...', 'warning');
+      this.updatePredictedTime();
+      return;
+    }
+
+    const loader = await this.ui.showLoading('Reserving...');
+
+    const cleanDate = this.rawPredictedDate.split('.')[0];
+    console.log('Sending Date:', cleanDate);
+
+    const request: TicketRequest = {
+      clientId: user.id,
+      serviceId: this.selectedServiceId!,
+      agencyId: this.agencyId,
+      appointmentDate: cleanDate
+    };
+
+    this.ticketService.generateTicket(request).subscribe({
+      next: (ticket) => {
+        loader.dismiss();
+        this.router.navigate(['ticket', ticket.id]);
+      },
+      error: (err) => {
+        loader.dismiss();
+        this.ui.showToast(err.error?.message || 'Error', 'danger');
+      }
+    });
+  }
+
+  canBook(): boolean {
+    if (!this.selectedAgency || !this.selectedServiceId || !this.rawPredictedDate) {
+      return false;
+    }
+    if (this.selectedDate === 'tomorrow') {
+      return true;
+    }
+
+    const now = new Date();
+    const [closeHour, closeMinute] = this.selectedAgency.closingTime.split(':').map(Number);
+
+    const closingTimeToday = new Date();
+    closingTimeToday.setHours(closeHour, closeMinute, 0, 0);
+
+    return now < closingTimeToday;
+  }
 
 
 
