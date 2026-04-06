@@ -1,7 +1,6 @@
-<ion-content [fullscreen]="true" style="--background: #fafaf9;">
-  <div class="max-w-4xl mx-auto py-12 px-6">
-
-    <div class="mb-10 flex justify-between items-start">
+<main class="bg-[#fafaf9] min-h-screen py-12 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="mb-10 flex flex-col md:flex-row justify-between items-start gap-6">
       <div>
         <div class="flex items-center gap-2 mb-2">
           <span class="h-px w-8 bg-zinc-800"></span>
@@ -9,32 +8,27 @@
             Bon retour, {{ agentName }}
           </h2>
         </div>
-        <h1 class="text-3xl font-semibold text-zinc-800 tracking-tight">
-          {{ agencyName }}
-        </h1>
-        <p class="text-zinc-400 mt-1 text-sm">
-          Sélectionnez un guichet pour commencer votre session de travail.
-        </p>
+        <h1 class="text-3xl font-semibold text-zinc-800 tracking-tight">{{ agencyName }}</h1>
+        <p class="text-zinc-400 mt-1 text-sm">Sélectionnez un guichet pour commencer votre session.</p>
       </div>
 
-      <div class="flex gap-2">
+      <div class="flex gap-2 w-full md:w-auto">
         <button (click)="openChangePassword()" 
                 class="flex items-center justify-center w-12 h-12 bg-white border border-zinc-200 rounded-xl text-zinc-500 hover:bg-zinc-50 transition-all active:scale-95 shadow-sm">
-          <ion-icon name="key-outline" class="text-xl"></ion-icon>
+          <i class="bi bi-key text-xl"></i>
         </button>
-
         <button (click)="onLogout()" 
-                class="flex items-center gap-2 px-4 py-3 bg-white border border-zinc-200 rounded-xl text-m font-semibold text-zinc-500 hover:text-red-600 hover:border-red-100 hover:bg-red-50 transition-all active:scale-95 shadow-sm">
+                class="flex-1 md:flex-none flex items-center gap-2 px-4 py-3 bg-white border border-zinc-200 rounded-xl font-semibold text-zinc-500 hover:text-red-600 hover:bg-red-50 transition-all active:scale-95 shadow-sm">
           <span>Déconnexion</span>
-          <ion-icon name="log-out-outline" class="text-m"></ion-icon>
+          <i class="bi bi-box-arrow-right"></i>
         </button>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       @for (counter of counters; track counter.number) {
         <div
-          (click)="selectCounter(counter)"
+          (click)="(!counter.active || counter.currentAgentName === agentName) ? selectCounter(counter) : null"
           class="relative p-6 bg-white rounded-xl border transition-all duration-200 group"
           [ngClass]="(!counter.active || counter.currentAgentName === agentName)
             ? 'border-zinc-100 shadow-sm hover:border-zinc-300 hover:shadow-md hover:-translate-y-1 cursor-pointer'
@@ -51,7 +45,7 @@
 
           <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5 transition-transform group-hover:scale-105"
                [ngClass]="(!counter.active || counter.currentAgentName === agentName) ? 'bg-zinc-800 text-white' : 'bg-zinc-100 text-zinc-400'">
-            <ion-icon name="desktop-outline" class="text-lg"></ion-icon>
+            <i class="bi bi-display text-lg"></i>
           </div>
 
           <h3 class="text-base font-semibold text-zinc-800">Guichet #{{ counter.number }}</h3>
@@ -62,11 +56,11 @@
           @if (!counter.active || counter.currentAgentName === agentName) {
             <div class="mt-5 flex items-center gap-1 text-zinc-800 font-medium text-[11px] uppercase tracking-widest">
               <span>{{ counter.active ? 'Reprendre' : 'Ouvrir le guichet' }}</span>
-              <ion-icon name="chevron-forward-outline" class="transition-transform group-hover:translate-x-1"></ion-icon>
+              <i class="bi bi-chevron-right transition-transform group-hover:translate-x-1"></i>
             </div>
           } @else {
             <div class="mt-5 flex items-center gap-1 text-zinc-400 font-medium text-[11px] uppercase tracking-widest">
-              <ion-icon name="lock-closed-outline"></ion-icon>
+              <i class="bi bi-lock-fill"></i>
               <span>Occupé</span>
             </div>
           }
@@ -75,11 +69,10 @@
     </div>
 
     @if (counters.length === 0) {
-      <div class="text-center py-20 bg-white rounded-xl border border-dashed border-zinc-200 mt-6">
-        <ion-icon name="construct-outline" class="text-4xl text-zinc-300 mb-3"></ion-icon>
-        <p class="text-sm text-zinc-400">Aucun guichet enregistré pour cette agence.</p>
+      <div class="text-center py-20 bg-white rounded-xl border border-dashed border-zinc-200 mt-6 shadow-sm">
+        <i class="bi bi-tools text-4xl text-zinc-300 mb-3 block"></i>
+        <p class="text-sm text-zinc-400">Aucun guichet enregistré.</p>
       </div>
     }
-
   </div>
-</ion-content>
+</main>

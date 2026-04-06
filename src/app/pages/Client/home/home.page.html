@@ -1,46 +1,41 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar style="--background: #ffffff; --min-height: 70px;">
-    <ion-title>
-      <div class="flex flex-col">
-        <span class="text-[10px] font-bold tracking-widest uppercase text-zinc-400">Bienvenue</span>
-        <span class="text-lg font-semibold text-zinc-800">Trouver une Agence</span>
-      </div>
-    </ion-title>
-    <ion-buttons slot="end">
+<header class="bg-white sticky top-0 z-50 px-4 py-3 border-b border-zinc-50">
+  <div class="flex justify-between items-center max-w-4xl mx-auto">
+    <div class="flex flex-col">
+      <span class="text-[10px] font-bold tracking-widest uppercase text-zinc-400">Bienvenue</span>
+      <span class="text-lg font-semibold text-zinc-800">Trouver une Agence</span>
+    </div>
+    <div class="flex gap-2">
        <button (click)="goToHistory()"
-              class="flex items-center gap-2 px-4 py-2 bg-zinc-50 border border-zinc-100 rounded-xl text-[12px] font-medium text-zinc-500 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-100 transition-all active:scale-95">
-        <span>Historique</span>
-    <ion-icon name="receipt-outline" class="text-lg"></ion-icon>
-  </button>
-      <button (click)="onLogout()"
-              class="flex items-center gap-2 px-4 py-2 bg-zinc-50 border border-zinc-100 rounded-xl text-[12px] font-medium text-zinc-500 hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all active:scale-95">
-        <span>Déconnexion</span>
-        <ion-icon name="log-out-outline" class="text-base"></ion-icon>
+              class="flex items-center gap-2 px-3 py-2 bg-zinc-50 border border-zinc-100 rounded-xl text-[12px] font-medium text-zinc-500 hover:bg-blue-50 hover:text-blue-600 transition-all active:scale-95">
+        <span class="hidden sm:inline">Historique</span>
+        <i class="bi bi-receipt text-lg"></i>
       </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+      <button (click)="onLogout()"
+              class="flex items-center gap-2 px-3 py-2 bg-zinc-50 border border-zinc-100 rounded-xl text-[12px] font-medium text-zinc-500 hover:bg-red-50 hover:text-red-600 transition-all active:scale-95">
+        <span class="hidden sm:inline">Déconnexion</span>
+        <i class="bi bi-box-arrow-right text-base"></i>
+      </button>
+    </div>
+  </div>
+</header>
 
-<ion-content style="--background: #fafaf9;">
-  <div class="p-4">
-
+<main class="bg-[#fafaf9] min-h-screen p-4">
+  <div class="max-w-4xl mx-auto">
     <div class="relative mb-5">
-      <ion-icon name="search-outline" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-lg z-10"></ion-icon>
+      <i class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-lg"></i>
       <input type="text"
              placeholder="Rechercher par ville ou nom..."
              [(ngModel)]="searchQuery"
-             class="w-full bg-white border border-zinc-200 rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-zinc-400 transition-all">
+             class="w-full bg-white border border-zinc-200 rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-zinc-400 transition-all shadow-sm">
     </div>
 
     @if (currentUser?.activeTicketId) {
       <div (click)="goToMyTicket()"
-           class="mb-5 rounded-2xl border border-zinc-200 bg-white overflow-hidden cursor-pointer active:scale-[0.98] transition-all">
-
+           class="mb-5 rounded-2xl border border-zinc-200 bg-white overflow-hidden cursor-pointer active:scale-[0.98] transition-all shadow-sm">
         <div class="h-1 bg-emerald-500 w-full"></div>
-
         <div class="flex items-center justify-between px-4 py-4">
           <div class="flex items-center gap-3">
-            <span class="relative flex h-2.5 w-2.5 flex-shrink-0">
+            <span class="relative flex h-2.5 w-2.5">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
               <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
             </span>
@@ -51,10 +46,9 @@
           </div>
           <div class="flex items-center gap-1 text-zinc-400">
             <span class="text-[11px] font-medium">Voir</span>
-            <ion-icon name="chevron-forward-outline" class="text-sm"></ion-icon>
+            <i class="bi bi-chevron-right text-sm"></i>
           </div>
         </div>
-
       </div>
     }
 
@@ -63,11 +57,11 @@
     <div class="space-y-3">
       @for (agency of filteredAgencies; track agency.id) {
         <div (click)="goToDetails(agency)"
-             class="bg-white border border-zinc-100 p-5 rounded-2xl active:scale-[0.98] transition-all flex justify-between items-center cursor-pointer">
+             class="bg-white border border-zinc-100 p-5 rounded-2xl active:scale-[0.98] transition-all flex justify-between items-center cursor-pointer shadow-sm hover:border-zinc-200">
           <div>
             <h3 class="font-semibold text-zinc-800 text-[15px]">{{ agency.name }}</h3>
             <p class="text-xs text-zinc-400 mt-1 flex items-center gap-1">
-              <ion-icon name="location-outline"></ion-icon>
+              <i class="bi bi-geo-alt"></i>
               {{ agency.address }}, {{ agency.city }}
             </p>
             <div class="mt-3 flex items-center gap-1.5">
@@ -79,7 +73,7 @@
               </span>
             </div>
           </div>
-          <ion-icon name="chevron-forward-outline" class="text-zinc-300 flex-shrink-0"></ion-icon>
+          <i class="bi bi-chevron-right text-zinc-300"></i>
         </div>
       }
 
@@ -89,6 +83,5 @@
         </div>
       }
     </div>
-
   </div>
-</ion-content>
+</main>

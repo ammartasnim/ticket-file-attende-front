@@ -1,71 +1,59 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar style="--background: #ffffff; --min-height: 70px;">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" text="" class="text-zinc-800"></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      <div class="flex flex-col">
-        <span class="text-[10px] font-bold tracking-widest uppercase text-zinc-400">Activité</span>
-        <span class="text-lg font-semibold text-zinc-800">Historique des Tickets</span>
-      </div>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content style="--background: #fafaf9;">
-  <div class="p-4">
-    
-    <div class="space-y-4">
-      @for (ticket of ticketHistory; track ticket.id) {
-        <div class="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
-          
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <h3 class="font-bold text-zinc-800 text-[15px]">{{ ticket.agencyName }}</h3>
-              <p class="text-[11px] text-zinc-400 flex items-center gap-1 mt-0.5">
-                <ion-icon name="calendar-outline"></ion-icon>
-                {{ ticket.appointmentDate | date:'mediumDate' }} • {{ ticket.appointmentDate | date:'shortTime' }}
-              </p>
-            </div>
-            
-            <span [ngClass]="{
-              'bg-emerald-50 text-emerald-600 border-emerald-100': ticket.status === 'COMPLETED',
-              'bg-red-50 text-red-600 border-red-100': ticket.status === 'CANCELED',
-              'bg-zinc-50 text-zinc-500 border-zinc-100': ticket.status === 'EXPIRED'
-            }" class="px-2.5 py-1 rounded-lg border text-[10px] font-bold uppercase tracking-wider">
-              {{ ticket.status }}
-            </span>
-          </div>
-
-          <div class="rounded-xl flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center border border-zinc-100">
-                <ion-icon name="construct-outline" class="text-zinc-400"></ion-icon>
-              </div>
-              <div>
-                <p class="text-[15px] font-large text-zinc-700">{{ ticket.serviceName }}</p>
-              </div>
-            </div>
-            
-            <div class="text-right">
-              <p class="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">Ticket #</p>
-              <p class="text-[13px] font-mono font-semibold text-zinc-800">{{ ticket.pin }}</p>
-            </div>
-          </div>
-
-        </div>
-      }
-
-      @if (ticketHistory.length === 0) {
-        <div class="py-20 text-center">
-          <div class="w-16 h-16 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <ion-icon name="receipt-outline" class="text-zinc-300 text-3xl"></ion-icon>
-          </div>
-          <h3 class="text-zinc-800 font-semibold">Aucun ticket pour le moment</h3>
-          <p class="text-sm text-zinc-400 mt-1">Vos visites passées apparaîtront ici.</p>
-        </div>
-      }
+<header class="bg-white px-4 py-4 border-b border-zinc-50 sticky top-0 z-50">
+  <div class="flex items-center max-w-4xl mx-auto">
+    <button (click)="goBack()" class="mr-4 text-zinc-800 text-lg">
+       <i class="bi bi-arrow-left"></i>
+    </button>
+    <div class="flex flex-col">
+      <span class="text-[10px] font-bold tracking-widest uppercase text-zinc-400">Activité</span>
+      <span class="text-lg font-semibold text-zinc-800">Historique des Tickets</span>
     </div>
-
   </div>
-</ion-content>
+</header>
+
+<main class="bg-[#fafaf9] min-h-screen p-4">
+  <div class="max-w-4xl mx-auto space-y-4">
+    @for (ticket of ticketHistory; track ticket.id) {
+      <div class="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-bold text-zinc-800 text-[15px]">{{ ticket.agencyName }}</h3>
+            <p class="text-[11px] text-zinc-400 flex items-center gap-1 mt-0.5">
+              <i class="bi bi-calendar3"></i>
+              {{ ticket.appointmentDate | date:'mediumDate' }} • {{ ticket.appointmentDate | date:'shortTime' }}
+            </p>
+          </div>
+          <span [ngClass]="{
+            'bg-emerald-50 text-emerald-600 border-emerald-100': ticket.status === 'COMPLETED',
+            'bg-red-50 text-red-600 border-red-100': ticket.status === 'CANCELED',
+            'bg-zinc-50 text-zinc-500 border-zinc-100': ticket.status === 'EXPIRED'
+          }" class="px-2.5 py-1 rounded-lg border text-[10px] font-bold uppercase tracking-wider">
+            {{ ticket.status }}
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-zinc-50 rounded-lg flex items-center justify-center border border-zinc-100">
+              <i class="bi bi-gear text-zinc-400"></i>
+            </div>
+            <p class="text-[15px] font-medium text-zinc-700">{{ ticket.serviceName }}</p>
+          </div>
+          <div class="text-right">
+            <p class="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">Ticket #</p>
+            <p class="text-[13px] font-mono font-semibold text-zinc-800">{{ ticket.pin }}</p>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (ticketHistory.length === 0) {
+      <div class="py-20 text-center">
+        <div class="w-16 h-16 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="bi bi-receipt text-zinc-300 text-3xl"></i>
+        </div>
+        <h3 class="text-zinc-800 font-semibold">Aucun ticket pour le moment</h3>
+        <p class="text-sm text-zinc-400 mt-1">Vos visites passées apparaîtront ici.</p>
+      </div>
+    }
+  </div>
+</main>

@@ -137,6 +137,9 @@ export class AgencyDetailsPage implements OnInit {
   }
 
 
+  goBack() {
+    this.router.navigate(['home']);
+  }
 
 
 }

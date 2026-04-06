@@ -1,5 +1,4 @@
 <div class="min-h-full p-10">
-
   <div class="mb-8 flex items-end justify-between border-b border-zinc-100 pb-8">
     <div>
       <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">Agences</h1>
@@ -7,21 +6,19 @@
     </div>
     <a routerLink="/admin/agencies/add"
       class="flex items-center gap-2 px-4 py-2.5 bg-zinc-900 rounded-lg text-[13px] font-medium text-white hover:bg-zinc-700 transition-all cursor-pointer no-underline">
-      <ion-icon name="add-outline" class="text-base"></ion-icon>
+      <i class="bi bi-plus-lg text-base"></i>
       Ajouter une Agence
     </a>
   </div>
 
-  <div
-    class="bg-white border border-zinc-200 rounded-lg px-4 py-2.5 mb-6 flex items-center gap-3 max-w-sm focus-within:border-zinc-400 transition-colors">
-    <ion-icon name="search-outline" class="text-zinc-400 text-base flex-shrink-0"></ion-icon>
+  <div class="bg-white border border-zinc-200 rounded-lg px-4 py-2.5 mb-6 flex items-center gap-3 max-w-sm focus-within:border-zinc-400 transition-colors">
+    <i class="bi bi-search text-zinc-400 text-base flex-shrink-0"></i>
     <input type="text" placeholder="Rechercher par nom ou ville..."
       class="w-full bg-transparent border-none outline-none text-[13px] text-zinc-700 placeholder-zinc-300"
       [(ngModel)]="searchTerm">
   </div>
 
   <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
-
     <div class="grid grid-cols-12 px-6 py-3 border-b border-zinc-50 bg-zinc-50">
       <span class="col-span-4 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agence</span>
       <span class="col-span-3 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Ville</span>
@@ -32,33 +29,27 @@
     </div>
 
     @for (agency of filteredAgencies; track agency.id) {
-    <div
-      class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0 hover:bg-zinc-50 transition-colors">
-
+    <div class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0 hover:bg-zinc-50 transition-colors">
       <div class="col-span-4 flex items-center gap-3">
         <div class="w-8 h-8 bg-zinc-100 rounded-lg flex items-center justify-center flex-shrink-0">
-          <ion-icon name="business-outline" class="text-zinc-400 text-sm"></ion-icon>
+          <i class="bi bi-building text-zinc-400 text-sm"></i>
         </div>
         <div>
           <span class="text-[13px] font-medium text-zinc-800">{{ agency.name }}</span>
           <p class="text-[11px] text-zinc-400 mt-0.5">{{ agency.address || '—' }}</p>
         </div>
       </div>
-
       <div class="col-span-3">
         <span class="text-[12px] text-zinc-500">{{ agency.city || '—' }}</span>
       </div>
-
       <div class="col-span-2">
         <span class="text-[12px] text-zinc-500">
           {{ agency.openingTime || '—' }} - {{ agency.closingTime || '—' }}
         </span>
       </div>
-
       <div class="col-span-1">
         <span class="text-[12px] text-zinc-500">{{ agency.maxCapacity }}</span>
       </div>
-
       <div class="col-span-1">
         <span class="inline-flex items-center gap-1.5">
           <span class="w-1.5 h-1.5 rounded-full" [ngClass]="agency.open ? 'bg-emerald-500' : 'bg-zinc-300'"></span>
@@ -67,31 +58,26 @@
           </span>
         </span>
       </div>
-
       <div class="col-span-1 flex items-center justify-end gap-1">
         <button (click)="viewAgency(agency.id)"
           class="w-7 h-7 flex items-center justify-center rounded-md text-zinc-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
           title="Voir les détails">
-          <ion-icon name="eye-outline" class="text-sm"></ion-icon>
+          <i class="bi bi-eye text-sm"></i>
         </button>
-
         <button (click)="$event.stopPropagation(); deleteAgency(agency.id)"
           class="w-7 h-7 flex items-center justify-center rounded-md text-zinc-300 hover:text-red-500 hover:bg-red-50 transition-all"
           title="Supprimer l'agence">
-          <ion-icon name="trash-outline" class="text-sm"></ion-icon>
+          <i class="bi bi-trash text-sm"></i>
         </button>
       </div>
-
     </div>
     }
 
     @if (agencies.length === 0) {
     <div class="py-20 text-center">
-      <ion-icon name="business-outline" class="text-3xl text-zinc-200 mb-2"></ion-icon>
+      <i class="bi bi-building text-3xl text-zinc-200 mb-2"></i>
       <p class="text-[13px] text-zinc-400">Aucune agence trouvée dans le système.</p>
     </div>
     }
-
   </div>
-
 </div>

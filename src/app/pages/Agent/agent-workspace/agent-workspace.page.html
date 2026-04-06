@@ -1,9 +1,9 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar style="--background: #ffffff; --border-color: #f1f1f0; --min-height: 64px; padding: 0 8px;">
+<header class="bg-white border-b border-zinc-100 sticky top-0 z-10" style="min-height: 64px;">
+  <div class="flex items-center justify-between px-4 h-16">
     
-    <div slot="start" class="flex items-center gap-3 px-2">
+    <div class="flex items-center gap-3 px-2">
       <div class="w-10 h-10 bg-zinc-100 rounded-xl flex items-center justify-center">
-        <ion-icon name="desktop-outline" class="text-zinc-500 text-lg"></ion-icon>
+        <i class="bi bi-display text-zinc-500 text-lg"></i>
       </div>
       <div>
         <p class="text-[10px] font-bold tracking-widest uppercase text-zinc-400 leading-none mb-1">Station</p>
@@ -11,22 +11,20 @@
       </div>
     </div>
 
-    <ion-buttons slot="end">
+    <div class="flex items-center">
       <button (click)="logoutWorkspace()" 
               class="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-200 text-[12px] font-medium text-zinc-600 hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all active:scale-95">
         <span>Fermer le guichet</span>
-        <ion-icon name="log-out-outline" class="text-base"></ion-icon>
+        <i class="bi bi-box-arrow-right text-base"></i>
       </button>
-    </ion-buttons>
+    </div>
+  </div>
+</header>
 
-  </ion-toolbar>
-</ion-header>
-
-<ion-content style="--background: #fafaf9;">
-  <div class="max-w-sm mx-auto pt-12 px-4">
+<main class="min-h-screen bg-[#fafaf9] pt-12 px-4">
+  <div class="max-w-sm mx-auto">
 
     <div class="bg-white border border-zinc-100 rounded-3xl p-8 text-center mb-4 shadow-sm">
-
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-6">
         En cours de traitement
       </p>
@@ -54,12 +52,12 @@
         <div class="flex gap-3">
           <button (click)="cancelCurrentTicket()"
                   class="flex-1 py-4 rounded-2xl border border-zinc-200 text-[13px] font-semibold text-zinc-500 hover:border-red-200 hover:text-red-500 hover:bg-red-50 transition-all">
-            <ion-icon name="close-outline" class="mr-1 text-lg"></ion-icon>
+            <i class="bi bi-x-lg mr-1 text-lg"></i>
             Annuler
           </button>
           <button (click)="completeTicket()"
                   class="flex-1 py-4 rounded-2xl bg-zinc-900 text-white text-[13px] font-semibold hover:bg-zinc-800 transition-all">
-            <ion-icon name="checkmark-outline" class="mr-1 text-lg"></ion-icon>
+            <i class="bi bi-check-lg mr-1 text-lg"></i>
             Terminer
           </button>
         </div>
@@ -67,7 +65,7 @@
       } @else {
         <div class="py-10">
           <div class="w-16 h-16 bg-zinc-50 rounded-full flex items-center justify-center mx-auto mb-4">
-             <ion-icon name="people-outline" class="text-zinc-300 text-3xl"></ion-icon>
+             <i class="bi bi-people text-zinc-300 text-3xl"></i>
           </div>
           <h3 class="text-zinc-400 font-medium mb-8">Prêt pour le prochain client</h3>
 
@@ -75,19 +73,16 @@
                   [disabled]="isLoading"
                   class="w-full py-4 bg-zinc-900 text-white rounded-2xl text-[14px] font-bold hover:bg-zinc-800 disabled:opacity-40 transition-all shadow-lg shadow-zinc-200">
             Appeler le suivant
-            <ion-icon name="arrow-forward-outline" class="ml-1.5"></ion-icon>
+            <i class="bi bi-arrow-right ml-1.5"></i>
           </button>
         </div>
       }
-
     </div>
 
- 
-      <div class="bg-white border border-zinc-100 rounded-2xl p-5">
-        <p class="text-[10px] font-bold tracking-widest uppercase text-zinc-400 mb-2">En attente</p>
-        <p class="text-3xl font-light text-zinc-900">{{ waitingCount }}</p>
-      </div>
+    <div class="bg-white border border-zinc-100 rounded-2xl p-5">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-zinc-400 mb-2">En attente</p>
+      <p class="text-3xl font-light text-zinc-900">{{ waitingCount }}</p>
+    </div>
       
-
   </div>
-</ion-content>
+</main>

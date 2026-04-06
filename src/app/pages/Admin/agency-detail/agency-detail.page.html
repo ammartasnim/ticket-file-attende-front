@@ -4,7 +4,7 @@
     <div>
       <a routerLink="/admin/agencies"
          class="inline-flex items-center gap-1.5 text-[12px] text-zinc-400 hover:text-zinc-700 transition-colors mb-5 cursor-pointer no-underline">
-        <ion-icon name="arrow-back-outline" class="text-sm"></ion-icon>
+        <i class="bi bi-arrow-left text-sm"></i>
         Retour aux Agences
       </a>
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Agence</p>
@@ -12,30 +12,30 @@
       <p class="text-[13px] text-zinc-400 mt-1">{{ agency?.address }}, {{ agency?.city }}</p>
     </div>
 
-    <button (click)="toggleOpen()"
+    <!-- <button (click)="toggleOpen()"
             class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-medium transition-all mt-10"
             [ngClass]="agency?.open
               ? 'bg-red-50 text-red-500 hover:bg-red-100'
               : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'">
-      <ion-icon [name]="agency?.open ? 'lock-closed-outline' : 'lock-open-outline'" class="text-base"></ion-icon>
+      <i [class]="agency?.open ? 'bi bi-lock' : 'bi bi-unlock'" class="text-base"></i>
       {{ agency?.open ? 'Fermer l\'Agence' : 'Ouvrir l\'Agence' }}
-    </button>
+    </button> -->
   </div>
 
-  <div class="grid grid-cols-4 gap-4 mb-10">
-    <div class="bg-white border border-zinc-100 rounded-xl p-5">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+    <div class="bg-white border border-zinc-100 rounded-xl p-5 shadow-sm">
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-2">Horaires</p>
       <p class="text-[13px] text-zinc-700">{{ agency?.openingTime }} – {{ agency?.closingTime }}</p>
     </div>
-    <div class="bg-white border border-zinc-100 rounded-xl p-5">
+    <div class="bg-white border border-zinc-100 rounded-xl p-5 shadow-sm">
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-2">Capacité Max</p>
       <p class="text-[13px] text-zinc-700">{{ agency?.maxCapacity }}</p>
     </div>
-    <div class="bg-white border border-zinc-100 rounded-xl p-5">
+    <div class="bg-white border border-zinc-100 rounded-xl p-5 shadow-sm">
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-2">Guichets</p>
       <p class="text-[13px] text-zinc-700">{{ counters.length }}</p>
     </div>
-    <div class="bg-white border border-zinc-100 rounded-xl p-5">
+    <div class="bg-white border border-zinc-100 rounded-xl p-5 shadow-sm">
       <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-2">Statut</p>
       <span class="inline-flex items-center gap-1.5">
         <span class="w-1.5 h-1.5 rounded-full"
@@ -49,7 +49,7 @@
   </div>
 
   <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-4">Guichets</p>
-  <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden">
+  <div class="bg-white border border-zinc-100 rounded-xl overflow-hidden shadow-sm">
 
     <div class="grid grid-cols-12 px-6 py-3 border-b border-zinc-50 bg-zinc-50">
       <span class="col-span-2 text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Guichet</span>
@@ -58,11 +58,10 @@
     </div>
 
     @for (counter of counters; track counter.id) {
-      <div class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0">
-
+      <div class="grid grid-cols-12 items-center px-6 py-4 border-b border-zinc-50 last:border-0 hover:bg-zinc-50 transition-colors">
         <div class="col-span-2 flex items-center gap-3">
           <div class="w-8 h-8 bg-zinc-100 rounded-lg flex items-center justify-center">
-            <ion-icon name="desktop-outline" class="text-zinc-400 text-sm"></ion-icon>
+            <i class="bi bi-display text-zinc-400 text-sm"></i>
           </div>
           <span class="text-[13px] font-medium text-zinc-800">#{{ counter.number }}</span>
         </div>
@@ -83,7 +82,6 @@
             </span>
           </span>
         </div>
-
       </div>
     }
 
@@ -92,7 +90,5 @@
         <p class="text-[13px] text-zinc-400">Aucun guichet configuré pour cette agence.</p>
       </div>
     }
-
   </div>
-
 </div>

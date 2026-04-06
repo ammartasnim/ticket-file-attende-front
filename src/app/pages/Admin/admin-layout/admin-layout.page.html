@@ -6,35 +6,44 @@
         <h1 class="text-base font-semibold text-zinc-900 tracking-tight">Panneau d'Administration</h1>
       </div>
 
-      <ion-list lines="none" class="bg-transparent px-3 pt-5">
+      <nav class="flex flex-col gap-1 px-3 pt-5">
 
-        <ion-item button routerLink="dashboard" routerLinkActive="active-nav" class="nav-item rounded-lg mb-0.5">
-          <ion-icon name="pie-chart-outline" slot="start"></ion-icon>
-          <ion-label>Tableau de Bord</ion-label>
-        </ion-item>
+        <a routerLink="dashboard" 
+           routerLinkActive="bg-zinc-50 text-zinc-900 shadow-sm"
+           class="flex items-center gap-3 px-4 py-2.5 text-[13px] font-medium text-zinc-500 rounded-lg hover:bg-zinc-50 transition-all no-underline">
+          <i class="bi bi-pie-chart text-lg"></i>
+          <span>Tableau de Bord</span>
+        </a>
 
-        <ion-item button routerLink="agencies" routerLinkActive="active-nav" class="nav-item rounded-lg mb-0.5">
-          <ion-icon name="business-outline" slot="start"></ion-icon>
-          <ion-label>Agences</ion-label>
-        </ion-item>
+        <a routerLink="agencies" 
+           routerLinkActive="bg-zinc-50 text-zinc-900 shadow-sm"
+           class="flex items-center gap-3 px-4 py-2.5 text-[13px] font-medium text-zinc-500 rounded-lg hover:bg-zinc-50 transition-all no-underline">
+          <i class="bi bi-building text-lg"></i>
+          <span>Agences</span>
+        </a>
 
-        <ion-item button routerLink="agents" routerLinkActive="active-nav" class="nav-item rounded-lg mb-0.5">
-          <ion-icon name="people-outline" slot="start"></ion-icon>
-          <ion-label>Agents</ion-label>
-        </ion-item>
+        <a routerLink="agents" 
+           routerLinkActive="bg-zinc-50 text-zinc-900 shadow-sm"
+           class="flex items-center gap-3 px-4 py-2.5 text-[13px] font-medium text-zinc-500 rounded-lg hover:bg-zinc-50 transition-all no-underline">
+          <i class="bi bi-people text-lg"></i>
+          <span>Agents</span>
+        </a>
 
-        <ion-item button routerLink="services" routerLinkActive="active-nav" class="nav-item rounded-lg mb-0.5">
-          <ion-icon name="list-outline" slot="start"></ion-icon>
-          <ion-label>Services</ion-label>
-        </ion-item>
+        <a routerLink="services" 
+           routerLinkActive="bg-zinc-50 text-zinc-900 shadow-sm"
+           class="flex items-center gap-3 px-4 py-2.5 text-[13px] font-medium text-zinc-500 rounded-lg hover:bg-zinc-50 transition-all no-underline">
+          <i class="bi bi-list-ul text-lg"></i>
+          <span>Services</span>
+        </a>
 
-      </ion-list>
+      </nav>
 
-      <div class="absolute bottom-0 left-0 right-0 border-t border-zinc-100 px-3 py-3">
-        <ion-item button (click)="logout()" lines="none" class="nav-item logout-item rounded-lg">
-          <ion-icon name="log-out-outline" slot="start"></ion-icon>
-          <ion-label>Déconnexion</ion-label>
-        </ion-item>
+      <div class="absolute bottom-0 left-0 right-0 border-t border-zinc-100 px-3 py-3 bg-white">
+        <button (click)="logout()" 
+                class="w-full flex items-center gap-3 px-4 py-2.5 text-[13px] font-medium text-red-500 rounded-lg hover:bg-red-50 transition-all">
+          <i class="bi bi-box-arrow-right text-lg"></i>
+          <span>Déconnexion</span>
+        </button>
       </div>
 
     </ion-content>

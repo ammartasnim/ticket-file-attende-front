@@ -1,9 +1,9 @@
-<div class="min-h-full p-10">
+<div class="min-h-full p-10 bg-white">
 
   <div class="mb-8 border-b border-zinc-100 pb-8">
     <a (click)="onCancel()"
        class="inline-flex items-center gap-1.5 text-[12px] text-zinc-400 hover:text-zinc-700 transition-colors mb-5 cursor-pointer no-underline">
-      <ion-icon name="arrow-back-outline" class="text-sm"></ion-icon>
+      <i class="bi bi-arrow-left text-sm"></i>
       Retour aux Agents
     </a>
     <p class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">Personnel</p>
@@ -12,7 +12,7 @@
 
   <form [formGroup]="agentForm" (ngSubmit)="onSubmit()" class="max-w-2xl">
 
-    <div class="grid grid-cols-2 gap-5 mb-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
         <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Prénom</label>
         <input type="text" formControlName="firstName" placeholder="Jean"
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-5 mb-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
         <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">E-mail Professionnel</label>
         <input type="email" formControlName="email" placeholder="jean.dupont@agence.com"
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-5 mb-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
       <div class="flex flex-col gap-1.5">
         <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Mot de Passe Initial</label>
         <input type="password" formControlName="password" placeholder="••••••••"
@@ -46,14 +46,13 @@
       </div>
       <div class="flex flex-col gap-1.5">
         <label class="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">Agence Assignée</label>
-        <ion-select formControlName="agencyId"
-                    placeholder="Sélectionner une agence"
-                    interface="popover"
-                    class="agency-select bg-white border border-zinc-200 rounded-lg px-3.5 text-[13px] text-zinc-800">
+        <select formControlName="agencyId"
+                class="bg-white border border-zinc-200 rounded-lg px-3.5 py-2.5 text-[13px] text-zinc-800 outline-none focus:border-zinc-500 transition-colors appearance-none">
+          <option [value]="null" disabled selected>Sélectionner une agence</option>
           @for (agency of agencies; track agency.id) {
-            <ion-select-option [value]="agency.id">{{ agency.name }}</ion-select-option>
+            <option [value]="agency.id">{{ agency.name }}</option>
           }
-        </ion-select>
+        </select>
       </div>
     </div>
 

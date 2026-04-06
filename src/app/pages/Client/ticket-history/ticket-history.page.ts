@@ -12,6 +12,7 @@ import {
   constructOutline, 
   chevronForwardOutline 
 } from 'ionicons/icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-history',
@@ -23,6 +24,7 @@ export class TicketHistoryPage implements ViewWillEnter {
   private ticketService = inject(TicketService);
   private authService = inject(AuthService);
   private ui = inject(UiService);
+  private router = inject(Router);
 
   ticketHistory: TicketResponse[] = [];
   isLoading: boolean = false;
@@ -75,5 +77,8 @@ export class TicketHistoryPage implements ViewWillEnter {
       case 'EXPIRED': return 'bg-zinc-50 text-zinc-500 border-zinc-100';
       default: return 'bg-blue-50 text-blue-600 border-blue-100';
     }
+  }
+  goBack(){
+      this.router.navigate(['home']);
   }
 }
